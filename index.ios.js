@@ -11,7 +11,31 @@ import React, {
   View
 } from 'react-native';
 
+import kde from 'ksana-database';
+import ksa from 'ksana-simple-api';
+import wylie from 'tibetan/wylie';
+
 class ksaReactNativeTestSuite extends Component {
+
+  componentDidMount() {
+
+    const options = {
+      db: 'jiangkangyur',
+      q: wylie.fromWylieWithWildcard('-'),
+      uti: ['1.1a']
+    };
+
+    ksa.fetch(options, (err, rows) => {
+      if (err) {
+        console.log('ksa.fetch err: ', err);
+      }
+      else {
+        console.log('ksa.fetch rows: ', rows);
+      }
+    });
+
+  }
+
   render() {
     return (
       <View style={styles.container}>
