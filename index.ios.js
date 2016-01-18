@@ -7,6 +7,7 @@ import React, {
   AppRegistry,
   Component,
   StyleSheet,
+  TextInput,
   Text,
   View
 } from 'react-native';
@@ -17,11 +18,21 @@ import wylie from 'tibetan/wylie';
 
 class ksaReactNativeTestSuite extends Component {
 
-  componentDidMount() {
+  state = {
+    searchKeyword: ''
+  };
+
+  handleChangeText = text => {
+
+    this.setState({searchKeyword: text});
+
+    const query = wylie.fromWylieWithWildcard(text);
+
+    console.log('query: ', query);
 
     const options = {
       db: 'jiangkangyur',
-      q: wylie.fromWylieWithWildcard('-'),
+      q: query,
       uti: ['1.1a']
     };
 
@@ -33,22 +44,12 @@ class ksaReactNativeTestSuite extends Component {
         console.log('ksa.fetch rows: ', rows);
       }
     });
-
-  }
+  };
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        <TextInput style={styles.input} autoFocus={true} onChangeText={this.handleChangeText} placeholder={'Search in sutra'} value={this.state.searchKeyword}/>
       </View>
     );
   }
@@ -59,18 +60,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#f5fcff',
+    paddingLeft: 14,
+    paddingRight: 14
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  input: {
+    backgroundColor: '#ffffff',
+    borderColor: '#555555',
+    borderRadius: 4,
+    borderWidth: 1,
+    color: '#555555',
+    fontSize: 18,
+    height: 50,
+    padding: 7
+  }
 });
 
 AppRegistry.registerComponent('ksaReactNativeTestSuite', () => ksaReactNativeTestSuite);
