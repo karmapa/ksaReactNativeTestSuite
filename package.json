@@ -12,13 +12,15 @@
     "buffer": "^4.3.0",
     "fs": "0.0.2",
     "ksana-analyzer": "git+https://github.com/ksanaforge/ksana-analyzer.git#1.5.0",
-    "ksana-database": "git+https://github.com/ksanaforge/ksana-database.git#1.5.5",
+    "ksana-database": "git+https://github.com/ksanaforge/ksana-database.git#1.5.6",
     "ksana-jsonrom": "git+https://github.com/ksanaforge/ksana-jsonrom.git#1.5.5",
     "ksana-react-native": "git+https://github.com/kmsheng/ksana-react-native.git#fix-nonnull",
     "ksana-search": "git+https://github.com/ksanaforge/ksana-search.git#1.5.5",
     "ksana-simple-api": "git+https://github.com/ksanaforge/ksana-simple-api.git#1.5.17",
-    "tibetan": "git+https://github.com/kmsheng/tibetan.git#feature-distinguish-qyang-q.yang",
+    "lodash": "^3.10.1",
     "path": "^0.12.7",
-    "react-native": "0.18.0-rc"
+    "react-native": "0.18.0-rc",
+    "react-timer-mixin": "^0.13.3",
+    "tibetan": "git+https://github.com/kmsheng/tibetan.git#feature-distinguish-qyang-q.yang"
   }
 }
