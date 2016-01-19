@@ -19,8 +19,15 @@ import wylie from 'tibetan/wylie';
 class ksaReactNativeTestSuite extends Component {
 
   state = {
-    searchKeyword: ''
+    searchKeyword: '',
+    dbDone: false
   };
+
+  componentDidMount() {
+    kde.open('jiangkangyur', () => {
+      this.setState({dbDone: true});
+    });
+  }
 
   handleChangeText = text => {
 
@@ -47,11 +54,14 @@ class ksaReactNativeTestSuite extends Component {
   };
 
   render() {
-    return (
-      <View style={styles.container}>
-        <TextInput style={styles.input} autoFocus={true} onChangeText={this.handleChangeText} placeholder={'Search in sutra'} value={this.state.searchKeyword}/>
-      </View>
-    );
+    if (this.state.dbDone) {
+      return (
+        <View style={styles.container}>
+          <TextInput style={styles.input} autoFocus={true} onChangeText={this.handleChangeText} placeholder={'Search in sutra'} value={this.state.searchKeyword}/>
+        </View>
+      );
+    }
+    return false;
   }
 }
 
