@@ -24,12 +24,18 @@ class ksaReactNativeTestSuite extends Component {
   };
 
   componentDidMount() {
-    kde.open('jiangkangyur', () => {
+    kde.open('jiangkangyur', (err, engine) => {
+      this.engine = engine;
       this.setState({dbDone: true});
     });
   }
 
   handleChangeText = text => {
+
+    if (this.engine.busy) {
+      console.log('busy');
+      return;
+    }
 
     this.setState({searchKeyword: text});
 
